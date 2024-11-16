@@ -37,7 +37,7 @@ public class Job {
         return getId() == job.getId();
     }
 
-    
+
     @Override
     public int hashCode() {
         return Objects.hash(getId());

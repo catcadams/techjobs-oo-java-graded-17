@@ -1,5 +1,6 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Job {
@@ -40,9 +41,52 @@ public class Job {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hashCode(id);
     }
 
+    @Override
+    public String toString() {
+//        ArrayList<Object> jobDetails = new ArrayList<>();
+
+        int id = this.getId();
+        String name = this.getName();
+        Employer employer = this.getEmployer();
+        Location location = this.getLocation();
+        PositionType positionType = this.getPositionType();
+        CoreCompetency coreCompetency = this.getCoreCompetency();
+
+//        jobDetails.add(name);
+//        jobDetails.add(employer);
+//        jobDetails.add(location);
+//        jobDetails.add(positionType);
+//        jobDetails.add(coreCompetency);
+
+//        for (Object details : jobDetails) {
+//            if (details.toString().isEmpty()) {
+//                details.setValue("Data not available");
+//            }
+//        }
+        if (name.isEmpty()) {
+            this.setName("Data not available");
+        }
+        if (employer.toString().isEmpty()) {
+            employer.setValue("Data not available");
+        }
+        if (location.toString().isEmpty()) {
+            location.setValue("Data not available");
+        }
+        if (positionType.toString().isEmpty()) {
+            positionType.setValue("Data not available");
+        }
+        if (coreCompetency.toString().isEmpty()) {
+            coreCompetency.setValue("Data not available");
+        }
+
+        return System.lineSeparator()+"ID: " + id + System.lineSeparator() + "Name: " + name +System.lineSeparator() +
+                "Employer: " + employer + System.lineSeparator() + "Location: " + location + System.lineSeparator() +
+                "Position Type: " + positionType + System.lineSeparator() + "Core Competency: " + coreCompetency
+                + System.lineSeparator();
+    }
 
     public int getId() {
         return id;

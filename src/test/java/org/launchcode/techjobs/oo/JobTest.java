@@ -8,7 +8,6 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-
         Job job1 = new Job();
         Job job2 = new Job();
 
@@ -41,5 +40,36 @@ public class JobTest {
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         assertFalse(job1.equals(job2));
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertTrue(job1.toString().startsWith(System.lineSeparator()));
+        assertTrue(job1.toString().endsWith(System.lineSeparator()));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertEquals(System.lineSeparator() + "ID: "+ job1.getId() + System.lineSeparator() +"Name: Product tester"
+                + System.lineSeparator()+ "Employer: ACME" + System.lineSeparator()+ "Location: Desert" + System.lineSeparator() +
+                "Position Type: Quality control" + System.lineSeparator() + "Core Competency: Persistence" +
+                System.lineSeparator(), job1.toString());
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                new PositionType("Quality control"), new CoreCompetency(""));
+
+        assertEquals(System.lineSeparator() + "ID: "+ job1.getId() + System.lineSeparator() +"Name: Product tester"
+                + System.lineSeparator()+ "Employer: ACME" + System.lineSeparator()+ "Location: Desert" + System.lineSeparator() +
+                "Position Type: Quality control" + System.lineSeparator() + "Core Competency: Data not available" +
+                System.lineSeparator(), job1.toString());
     }
 }

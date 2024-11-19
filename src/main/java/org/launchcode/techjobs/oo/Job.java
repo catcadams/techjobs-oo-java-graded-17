@@ -46,7 +46,7 @@ public class Job {
 
     @Override
     public String toString() {
-//        ArrayList<Object> jobDetails = new ArrayList<>();
+        ArrayList<JobField> jobDetails = new ArrayList<>();
 
         int id = this.getId();
         String name = this.getName();
@@ -55,31 +55,24 @@ public class Job {
         PositionType positionType = this.getPositionType();
         CoreCompetency coreCompetency = this.getCoreCompetency();
 
-//        jobDetails.add(name);
-//        jobDetails.add(employer);
-//        jobDetails.add(location);
-//        jobDetails.add(positionType);
-//        jobDetails.add(coreCompetency);
+        jobDetails.add(employer);
+        jobDetails.add(location);
+        jobDetails.add(positionType);
+        jobDetails.add(coreCompetency);
 
-//        for (Object details : jobDetails) {
-//            if (details.toString().isEmpty()) {
-//                details.setValue("Data not available");
-//            }
-//        }
+        for (JobField details : jobDetails) {
+            if (details.toString().isEmpty()) {
+                details.setValue("Data not available");
+            }
+        }
+
         if (name.isEmpty()) {
             this.setName("Data not available");
         }
-        if (employer.toString().isEmpty()) {
-            employer.setValue("Data not available");
-        }
-        if (location.toString().isEmpty()) {
-            location.setValue("Data not available");
-        }
-        if (positionType.toString().isEmpty()) {
-            positionType.setValue("Data not available");
-        }
-        if (coreCompetency.toString().isEmpty()) {
-            coreCompetency.setValue("Data not available");
+
+        if (name.isEmpty() && employer.toString().isEmpty() && location.toString().isEmpty() && positionType.toString().isEmpty()
+        && coreCompetency.toString().isEmpty()) {
+            return "OOPS! This job does not seem to exist.";
         }
 
         return System.lineSeparator()+"ID: " + id + System.lineSeparator() + "Name: " + name +System.lineSeparator() +

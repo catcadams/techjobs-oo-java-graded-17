@@ -34,14 +34,13 @@ public class Job {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Job)) return false;
-        Job job= (Job) o;
+        Job job = (Job) o;
         return getId() == job.getId();
     }
 
-
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(getId());
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Objects;
 public abstract class JobField {
 
     private int id;
-    private int nextId = 1;
+    private static int nextId = 1;
     private String value;
 
     public JobField() {
@@ -24,14 +24,14 @@ public abstract class JobField {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof JobField)) return false;
         JobField jobField = (JobField) o;
-        return getId() == jobField.id;
+        return getId() == jobField.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(getId());
     }
 
     public String getValue() {
